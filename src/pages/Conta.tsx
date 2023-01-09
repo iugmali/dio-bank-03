@@ -5,33 +5,13 @@ import { api } from "../api"
 import CardInfo from "../components/CardInfo"
 import { AppContext } from "../components/AppContext"
 
-interface UserData {
-    email: string
-    password: string
-    name: string
-    balance: number
-    id: string
-}
-
 const Conta = () => {
-    const [ userData, setUserData ] = useState<null | UserData>()
     const { id } = useParams()
     const navigate = useNavigate()
-
-    const { isLoggedIn } = useContext(AppContext)
-
+    const { isLoggedIn, userData } = useContext(AppContext)
     !isLoggedIn && navigate('/')
 
-    useEffect(() => {
-        const getData = async () => {
-            const data: any | UserData = await api
-            setUserData(data)
-        }
-
-        getData()
-    }, [])
-
-    const actualData = new Date()
+    const actualDate = new Date()
 
     if(userData && id !== userData.id) {
         navigate('/')
@@ -41,7 +21,7 @@ const Conta = () => {
         <Center>
             <SimpleGrid columns={2} spacing={8} paddingTop={16}>
                 {
-                    userData === undefined || userData === null ?
+                    !userData ?
                     (  
                         <Center>
                             <Spinner size='xl' color='white'/>
@@ -49,7 +29,7 @@ const Conta = () => {
                     ) : 
                     (
                         <>
-                            <CardInfo mainContent={`Bem vinda ${userData?.name}`} content={`${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`} />
+                            <CardInfo mainContent={`Bem vindo, ${userData?.name}`} content={`${actualDate.getDate()}/${actualDate.getMonth()+1}/${actualDate.getFullYear()} ${actualDate.getHours() < 10 ? 0 : ''}${actualDate.getHours()}:${actualDate.getMinutes() < 10 ? 0 : ''}${actualDate.getMinutes()}`} />
                             <CardInfo mainContent='Saldo' content={`R$ ${userData.balance}`}/>
                         </>
                     )

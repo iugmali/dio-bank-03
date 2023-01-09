@@ -11,9 +11,9 @@ describe('login', () => {
     })
 
     it('should return false when email/password is invalid', async() => {
-        const response = await login('email@invalido.com', mockPassword)
-        expect(response).toBeFalsy()
-        const response = await login(mockEmail, '1234')
-        expect(response).toBeFalsy()
+        const invalidEmailResponse = await login('email@invalido.com', mockPassword)
+        expect(invalidEmailResponse).toBeFalsy()
+        const invalidPasswordResponse = await login(mockEmail, '1234')
+        expect(invalidPasswordResponse).toBeFalsy()
     })
 })

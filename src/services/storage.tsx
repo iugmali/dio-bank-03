@@ -1,9 +1,13 @@
-interface IDIoBank {
+import {UserData} from "../components/AppContext";
+
+interface IDioBank {
     login: boolean;
+    user: UserData | null;
 }
 
 const dioBank = {
-    login: false
+    login: false,
+    user: null
 }
 
 export const getAllLocalStorage = (): string | null  => {
@@ -14,6 +18,6 @@ export const createLocalStorage = (): void => {
     localStorage.setItem('diobank', JSON.stringify(dioBank))
 }
 
-export const changeLocalStorage = (dioBank: IDIoBank): void => {
+export const changeLocalStorage = (dioBank: IDioBank): void => {
     localStorage.setItem('diobank', JSON.stringify(dioBank))
 }
