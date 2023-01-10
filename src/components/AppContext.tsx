@@ -5,7 +5,8 @@ interface IAppContext {
     isLoggedIn: boolean,
     setIsLoggedIn: (isLoggedIn: boolean) => void,
     userData: null | UserData,
-    setUserData: (userData: UserData) => void
+    setUserData: (userData: UserData | null) => void,
+    fetchData: boolean
 }
   
 export const AppContext = createContext({} as IAppContext)
@@ -25,18 +26,21 @@ export interface UserData {
 export const AppContextProvider = ({ children }: IAppContextProvider) => {
     const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
     const [ userData, setUserData ] = useState<null | UserData>(null)
+    const [ fetchData, setFetchData ] = useState<boolean>(false)
 
     const storage = getAllLocalStorage()
 
     useEffect(() => {
-      if(storage){
-        const { login, user } = JSON.parse(storage)
-        setIsLoggedIn(login)
-      }
+        if(storage){
+            const { login, user } = JSON.parse(storage)
+            setIsLoggedIn(login)
+            setUserData(user)
+            setFetchData(true)
+        }
     }, [])
   
     return (
-      <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn, userData, setUserData }}>
+      <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn, userData, setUserData, fetchData }}>
         { children }
       </AppContext.Provider>
     )
