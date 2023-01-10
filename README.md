@@ -1,7 +1,8 @@
 # dio-bank-03
 
-deploy Netlify
-desenvolvido por [Nathally Souza](https://github.com/nathyts)
+## Desafio concluído e feito deploy em Netlify: [iugmali-dio-bank-03.netlify.app](https://iugmali-dio-bank-03.netlify.app)
+
+projeto inicial por [Nathally Souza](https://github.com/nathyts)
 
 #### Projeto desenvolvido com conceitos básicos de typescript
 
@@ -20,7 +21,7 @@ desenvolvido por [Nathally Souza](https://github.com/nathyts)
 
     npm start
 
-#### Desafios
+#### Desafios Concluídos
 [x] Incluir validação da senha no campo de login
   - Para logar, além do email faça a validação com a senha informada pelo usuário.
   - Durante a implementação, aplique o TDD e escreva os testes unitários para a nova validação
@@ -36,4 +37,4 @@ desenvolvido por [Nathally Souza](https://github.com/nathyts)
   - Caso a usuária não esteja logada, deve ser mantida na página com a tela de login
   - Escreva os testes unitários para as funções criadas ou refatoradas.
 
-[ ] Fazer o deploy no Netlify e compartilhar o link da página
+[x] Fazer o deploy no Netlify e compartilhar o link da página
